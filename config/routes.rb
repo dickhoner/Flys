@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "pages#home"
   get "about" => "pages#about" #creates about path
+  get "maps" => "pages#maps"
+  get "fish_book" => "pages#fish_book"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

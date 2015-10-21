@@ -1,3 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Economica:400,700,400italic&subset=latin,latin-ext);
+
+$font-family-sans-serif:           'Economica', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
 $body-bg:   #95a5a6;
 
 $navbar-inverse-bg:    #f1c40f;
@@ -5,9 +9,15 @@ $navbar-inverse-link-color:    white;
 $navbar-inverse-link-hover-color:    #bdc3c7; 
 
 $brand-primary:    #2c3e50;
+$brand-danger:    #e67e22;
+
 
 $jumbotron-bg:     #d35400;
 $jumbotron-color:     white;
 $jumbotron-padding: 25px;
 
 @import 'bootstrap';
+
+.center {
+     text-align: center;
+}
