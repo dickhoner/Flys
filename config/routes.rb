@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users
+  devise_for :views
   root "pages#home"
   get "about" => "pages#about" #creates about path
   get "maps" => "pages#maps"
   get "fish_book" => "pages#fish_book"
-
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+    end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
