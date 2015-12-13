@@ -1,27 +1,26 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:update, :index]
 
   respond_to :html
 
   def index
     @pins = Pin.all
-    respond_with(@pins)
   end
 
   def show
-    respond_with(@pin)
   end
 
   def new
-    @pin = Pin.new
-    respond_with(@pin)
+    @pin = current_user.pins.build
   end
 
   def edit
   end
 
   def create
-    @pin = Pin.new(pin_params)
+    @pin = current_user.pins.build(pin_params)
     @pin.save
     respond_with(@pin)
   end
@@ -32,8 +31,8 @@ class PinsController < ApplicationController
   end
 
   def destroy
-    @pin.destroy
-    respond_with(@pin)
+    @pin.destroy(pin_params)
+    redirect_to pins_url
   end
 
   private
@@ -41,7 +40,14 @@ class PinsController < ApplicationController
       @pin = Pin.find(params[:id])
     end
 
+    def correct_user 
+      @pin = current_user.pins.find_by(id: params[:id])
+      redirect_to pin_path, notice: "Unauthorized Access" if @pin.nil?
+    end
+      
+    end
+    
     def pin_params
       params.require(:pin).permit(:description)
     end
-end
+
